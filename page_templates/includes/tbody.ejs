@@ -1,0 +1,26 @@
+
+<% for (let book of books) { %>
+    <tr>
+        <% let href = `/library/books/view/${book.id}` %>
+        <th class="w3-center"><a href="<%=href%>"><%= book.id%></a></th>
+        <th class="w3-center"><a href="<%=href%>"><%= book.title%></a></th>
+        <th class="w3-center"><a href="<%=href%>"><%= book.year%></a></th>
+        <th class="w3-center"><a href="<%=href%>"><%= book.count%></a></th>
+        <th class="w3-center"><a href="<%=href%>"><%= Object.keys(book.readers).length%></a></th>
+        <th class="w3-center">
+            <% if (Object.keys(book.readers).length) { %>
+                <select class="open-modal-users">
+                    <option value=""></option>
+                    <% for (let userId of Object.keys(book.readers)) { %>
+                        <% let user = getUser(userId) %>
+                        <option value="<%= userId %>"><%= `${user.firstName} ${user.lastName}` %></option>
+                    <% } %>
+                </select>
+            <% } else { %>
+            <%='Никто не читает(' %>
+            <% } %>
+
+        </th>
+        <th onclick="deleteBook(<%= book.id %>)" class="w3-center"><i class="fa fa-trash-o" aria-hidden="true"></i></th>
+    </tr>
+<% } %>

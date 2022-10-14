@@ -1,0 +1,45 @@
+.new-reader {
+    width: 20%;
+    margin: 0 auto;
+    border: 1px solid black;
+    border-radius: 20px;
+}
+
+.new-reader:hover {
+    transform: scale(1.1);
+}
+
+.return-book-a {
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 1px 8px;
+    display: inline-block;
+}
+
+.return-book-a:hover {
+    transform: scale(1.1);
+}
+
+.content {
+    -moz-columns: 2;
+    -webkit-columns: 2;
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.back-button {
+    margin: 20px 0 0 20px;
+    padding: 0 6px;
+    border: 1px solid black;
+    border-radius: 20px;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.back-button:hover {
+    transform: scale(1.1);
+}

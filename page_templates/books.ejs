@@ -1,0 +1,76 @@
+<% layout('layouts/base') %>
+<link rel = "stylesheet" href = "/css/books.css">
+<link rel="stylesheet" href="/css/font-awesome.css">
+<body>
+<h1 class="w3-center"> <%= title %> </h1>
+<div class="books w3-center">
+    <table class="w3-table">
+        <thead>
+        <tr class="w3-red">
+            <th class="w3-center">ID</th>
+            <th class="w3-center">Название</th>
+            <th class="w3-center">Год выпуска</th>
+            <th class="w3-center">Количество</th>
+            <th class="w3-center">В аренде</th>
+            <th class="w3-center">Читатели</th>
+            <th class="w3-center">Удалить</th>
+        </tr>
+        </thead>
+        <tbody id="book-table">
+        <%- include('includes/tbody', {books: books, getUser: getUser}); %>
+        </tbody>
+    </table>
+    <p class="book-button" id="sort-by-date">По дате возврата</p>
+    <p class="book-button" id="sort-by-availability">По наличию</p>
+    <p class="book-button" id="sort-by-standard">Обычное состояние</p>
+    <p class="book-button" id="open-add-book">Добавить книгу</p>
+    <p class="book-button" id="open-add-reader">Добавить читателя</p>
+</div>
+<dialog id="reader-info">
+    <h2 class="fio-reader"></h2>
+    <p>Взятые книги:</p>
+    <span class="lease-books"></span>
+    <button id="close-reader-info">Закрыть</button>
+</dialog>
+
+<dialog id="add-book">
+    <form id="add-book-form" class="w3-container">
+        <p>
+            <label>Название</label>
+            <input name="title" class="w3-input" type="text"><p>
+        <p>
+            <label>Автор</label>
+            <input name="author" class="w3-input" type="text"><p>
+        <p>
+            <label>Количество</label>
+            <input name="count" class="w3-input" type="text"><p>
+        <p>
+            <label>Год</label>
+            <input name="year" class="w3-input" type="text"><p>
+        <button id="button-add-book" type="submit">Добавить книгу</button>
+        <button id="close-add-book">Закрыть форму</button>
+    </form>
+</dialog>
+<dialog id="add-reader">
+    <form id="add-reader-form" class="w3-container">
+        <p>
+            <label>Имя</label>
+            <input name="firstName" class="w3-input" type="text"><p>
+        <p>
+            <label>Фамилия</label>
+            <input name="lastName" class="w3-input" type="text"><p>
+        <p>
+            <label>Отчество</label>
+            <input name="patronymic" class="w3-input" type="text"><p>
+        <button id="button-add-reader" type="submit">Добавить пользователя</button>
+        <button id="close-add-reader">Закрыть форму</button>
+    </form>
+</dialog>
+<script src="/js/books/addBookModel.js"></script>
+<script src="/js/books/deleteBook.js"></script>
+<script src="/js/books/userModal.js"></script>
+<script src="/js/books/addReaderModal.js"></script>
+<script src="/js/books/sortByDate.js"></script>
+<script src="/js/books/sortByAvailability.js"></script>
+<script src="/js/books/sortByStandard.js"></script>
+</body>

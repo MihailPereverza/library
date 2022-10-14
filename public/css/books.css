@@ -1,0 +1,24 @@
+a {
+    text-decoration: none;
+}
+
+.book-button {;
+    font-size: 20px;
+    border: 1px solid black;
+    border-radius: 15px;
+    margin: 20px 20% 0 20%;
+}
+
+.book-button:hover {
+    transform: scale(1.1);
+    transition-duration: 500ms;
+}
+
+.book-button:not(:hover) {
+    transform: scale(1);
+    transition-duration: 500ms;
+}
+
+.open-modal-users {
+    width: 100%;
+}

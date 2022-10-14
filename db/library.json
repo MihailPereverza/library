@@ -1,0 +1,64 @@
+{
+    "lastBookId": 9,
+    "lastUserId": 4,
+    "books": {
+        "2": {
+            "id": "2",
+            "title": "Красная шапочка",
+            "count": 3,
+            "year": "2022",
+            "author": "Народная",
+            "readers": {
+                "1": "2029-9-12"
+            }
+        },
+        "6": {
+            "id": "6",
+            "title": "dsdf",
+            "count": "0",
+            "year": "2",
+            "author": "aasdffsd",
+            "readers": {
+                "1": "2022-10-16"
+            }
+        },
+        "9": {
+            "id": 9,
+            "title": "asdf",
+            "count": 1,
+            "year": "222",
+            "readers": {
+                "4": "2022-10-16"
+            },
+            "author": "asdafsd"
+        }
+    },
+    "users": {
+        "1": {
+            "id": 1,
+            "firstName": "Михаил",
+            "lastName": "Переверза",
+            "patronymic": "Алесандрович",
+            "books": {
+                "2": true,
+                "6": true
+            }
+        },
+        "2": {
+            "id": 2,
+            "firstName": "Андрей",
+            "lastName": "Колесников",
+            "patronymic": "Игоревич",
+            "books": {}
+        },
+        "4": {
+            "id": 4,
+            "firstName": "asdsdf",
+            "lastName": "asdfasd",
+            "patronymic": "asdfa",
+            "books": {
+                "9": true
+            }
+        }
+    }
+}

@@ -1,0 +1,79 @@
+<% layout('layouts/base') %>
+<link rel = "stylesheet" href = "/css/bookCard.css">
+<body>
+
+<!--    <div class="content w3-container">-->
+        <a href="/library/books/view/books" class="back-button">Ко всем книгам</a>
+        <h1 class=""> <%= book.title %> </h1>
+<!--    </div>-->
+    <div class="book w3-center">
+    <p class="w3-container">ID: <span class="field"><%= book.id %></span></p>
+    <p class="w3-container">Название: <span class="field"><%= book.title %></span></p>
+    <p class="w3-container">Автор: <span class="field"><%= book.author %></span></p>
+    <p class="w3-container">Год выпуска: <span class="field"><%= book.year %></span></p>
+    <p class="w3-container">Количество: <span class="field"><%= book.count %></span></p>
+    </div>
+    <div class="readers w3-center">
+        <h2 class="reader-h1">Читатели</h2>
+        <% for (let readerId of Object.keys(book.readers).sort((a, b) => {return new Date(book.readers[a]) - new Date(book.readers[b])})) { %>
+            <% let readerData = getReaderData(readerId) %>
+            <% let pClass = `reader${readerId}` %>
+            <% let readerText = `Книгу взял ${readerData.firstName} ${readerData.lastName} до ${book.readers[readerId]}` %>
+            <% let spanOnClick =  `returnBook('${pClass}', ${book.id}, ${readerId})`%>
+            <p class="reader <%= pClass %>"><%=readerText%> <span class="return-book-a" onclick="<%-spanOnClick%>">Вернуть</span></p>
+        <% } %>
+        <p class="new-reader"> +</p>
+    </div>
+    <dialog id="add-reader">
+        <form id="add-reader-form" class="w3-container">
+            <input type="hidden" name="bookId" value="<%= book.id %>">
+            <p>
+                <label>Читатель</label>
+                <select name="readerId" id="select-reader">
+                    <% for (let reader of readers) { %>
+                    <option value="<%=reader.id%>"><%=`${reader.firstName} ${reader.lastName}`%></option>
+                    <% } %>
+                </select>
+            <p>
+                <label>Количество дней</label>
+                <input name="dayLease" class="w3-input" type="text"></p>
+            <button type="submit">Добавить пользователя</button>
+            <button id="close-add-reader">Закрыть форму</button>
+        </form>
+    </dialog>
+
+<script src="/js/setEditFields.js"></script>
+<script src="/js/returnBook.js"></script>
+<script>
+    const newReaderButton = document.getElementsByClassName('new-reader')[0]
+    const addReader = document.getElementById('add-reader')
+    let closeAddReader = document.getElementById('close-add-reader')
+
+    newReaderButton.addEventListener('click', (e) => {
+        e.stopPropagation()
+        addReader.showModal()
+
+    })
+    let readerForm = document.getElementById('add-reader-form')
+    readerForm.onsubmit = async (e) => {
+        e.preventDefault();
+        const obj = {}
+        new FormData(readerForm).forEach((v, k) => obj[k] = v)
+        const response = await fetch("/library/books/addreader", {
+            method: "POST",
+            body: JSON.stringify(obj),
+            headers: {
+                'content-type': 'application/json'
+            }
+        });
+        await response.text();
+        location.reload();
+
+    }
+
+    closeAddReader.addEventListener('click', () => {
+        addReader.close()
+    })
+
+</script>
+</body>
